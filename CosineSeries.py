@@ -46,19 +46,19 @@ def generate_cosine_series():
     start_time = 0
     end_time = 1
 
-    for f0 in range(500, 20_001, 500):
-        t, x = generate_cosine_wave(f0, start_time, end_time)
+    for freq in range(500, 20_000 + 1, 500):
+        t, x = generate_cosine_wave(freq, start_time, end_time)
 
         sd.play(x, fs)
 
         plt.plot(t[:100], x[:100])
-        plt.title(f"Cosine wave of {f0} Hz")
+        plt.title(f"Cosine wave of {freq} Hz")
         plt.xlabel("Time (s)")
         plt.ylabel("Value")
         plt.grid()
         plt.show()
 
-        sd.wait()
+        sd.wait() # Wait for recording to finish
 
 def generate_chromatic_scale():
     """

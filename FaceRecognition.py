@@ -1,21 +1,21 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from time import sleep
 
 
 def draw_two_faces():
-    w_face_blk_bg = draw_white_face()
-    b_face_white_bg = 1 - w_face_blk_bg
+    white_face_blk_bg = draw_white_face()
+    black_face_white_bg = 1 - white_face_blk_bg # Inverts all values, can also be done using ~
 
-    return w_face_blk_bg, b_face_white_bg
+    return white_face_blk_bg, black_face_white_bg
 
 
 def draw_white_face():
     """
     Draws white face on black background
-    :return: numpy matrix
+    :return: numpy matrix representing a white face
     """
     w_face_blk_bg = np.zeros([14, 14])
+
     # Top eyes
     w_face_blk_bg[3, 2:6] = 1
     w_face_blk_bg[3, 8:12] = 1
@@ -37,16 +37,16 @@ def draw_white_face():
 def display_faces(faces, graph_title="Face Comparison", counter=None):
     """
     Displays two faces side by side with a main graph title.
-
-    :param counter: attempts counter, if relevant
+    This function is used to show and compare two faces.
+    :param counter: attempts counter, if relevant, defaults to None
     :param faces: A tuple of two numpy arrays representing the faces.
-    :param graph_title: A string representing the main title of the graph.
+    :param graph_title: A string representing the main title of the graph, defaults to "Face Comparison".
     """
     captions = ["Test Face", "Template Face"]
 
     fig, axes = plt.subplots(1, 2, figsize=(8, 6))
 
-    title_color = "black"
+    title_color = "black" # default value
 
     status = graph_title
     if status == "access permitted":
@@ -63,7 +63,6 @@ def display_faces(faces, graph_title="Face Comparison", counter=None):
 
     if counter is not None:
         fig.text(0.5, 0.01, f"Attempts: {counter}", ha='center', fontsize=12)
-
 
     plt.tight_layout()
     plt.show()
@@ -112,8 +111,8 @@ def check_access(template_face, test_face, p_threshold):
 
 def face_factory():
     """
-    Produces a binary matrix, "face", with edges always set to 1.
-    :return: binary matrix, numpy array
+    Produces a binary matrix, "face", with edges always set to 1 (black frame).
+    :return: binary matrix representing a face, numpy array
     """
     matrix = np.random.randint(2, size=(14, 14))
 

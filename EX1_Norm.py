@@ -2,15 +2,12 @@ import numpy as np
 
 def normip(v, p):
     """
-    function to compute the natural norm of an input vector.
-    Inputs: v - a numpy array (n dim vector), p – real number >=1,
-    if p = ‘max’ the infinity norm is computed (norma ∞).
-    Outputs: p norm of v
+    function to compute the p'th or infinite norm of the input vector.
+    if p = ‘max’ the infinity norm is computed
     :param v: a numpy array (n dim vector)
-    :param p: p – real number >=1 or 'max'
-    :return: p norm of v
+    :param p: real number >=1 or 'max'
+    :return: p norm of v or infinite norm
     """
-
     if p == 'max':
         return np.max(np.abs(v))
 
@@ -19,6 +16,10 @@ def normip(v, p):
 
     else:
         raise ValueError('p must be either real number or "max"')
+
+"""
+The next three functions are just the requested calculations
+"""
 
 def alef():
     v = np.array([1j, 2j, -3, 1, 7-3j])
