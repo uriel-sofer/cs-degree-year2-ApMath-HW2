@@ -125,6 +125,7 @@ def face_factory():
 
     return matrix
 
+
 def hostile_takeover():
     """
     Simulates a hostile takeover - a brute force attack
@@ -136,17 +137,20 @@ def hostile_takeover():
         hostile_face = face_factory()
         access_status = check_access(template_face, hostile_face, 0.59)
         display_faces((hostile_face, template_face), access_status, attempts)
-        sleep(0) # Add a little delay
         attempts+=1
 
         open_gate = (access_status == "access permitted")
 
+    print("Attempts: ", attempts)
+
+
 def main():
-    # faces = draw_two_faces()
-    # print("Resemblance Factor:", calc_resemblance_factor(faces[0], faces[1]))
-    # display_faces(faces)
+    faces = draw_two_faces()
+    print("Resemblance Factor:", calc_resemblance_factor(faces[0], faces[1]))
+    display_faces(faces)
 
     hostile_takeover()
+
 
 if __name__ == '__main__':
     main()
